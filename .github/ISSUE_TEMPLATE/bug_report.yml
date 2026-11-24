@@ -1,18 +1,17 @@
-name: "System & Hardware Bug Report (PC / Workstation)"
-description: "Report an OS, driver, input pipeline, telemetry, or repository bug on FN-WORKSTATION."
+name: "System & Hardware Bug Report"
+description: "Report an OS, driver, input pipeline, or repository issue on FN-WORKSTATION or Mobile."
 title: "[BUG]: "
-labels: ["bug", "triage", "env:pc-workstation"]
+labels: ["bug"]
 assignees:
   - userfn-git
 body:
   - type: dropdown
-    id: target_device
+    id: device_node
     attributes:
       label: Target Device / Node
       options:
-        - "FN-WORKSTATION (Primary PC - Windows 11 Pro 25H2)"
+        - "FN-WORKSTATION (PC - Windows 11 Pro 25H2)"
         - "Mobile Device (Secondary Node)"
-        - "Multi-Device / Cloud Sync"
       default: 0
     validations:
       required: true
@@ -21,42 +20,32 @@ body:
     attributes:
       label: Affected Subsystem
       options:
-        - "OS & Kernel / Windows Internals (Build 26200 / HVCI)"
-        - "Hardware & Firmware (ASUS SM-H610 / BIOS 4003 / GPU / NVMe)"
-        - "Input & Peripherals (Logitech G502 X / PRO X 60 / DirectInput / RawInput)"
-        - "Physics & Telemetry Engine (C++20 / Lua / Python / Shared Memory IPC)"
-        - "Shell & Automation (PowerShell / MSYS2 UCRT64 / Git)"
-        - "Game Environment (Rocket League 240Hz / EOS / Configs)"
+        - "OS & Windows Internals (Build 26200 / HVCI)"
+        - "Hardware & Firmware (ASUS SM-H610 / BIOS 4003 / GTX 1660 Ti)"
+        - "Peripherals & Input (Logitech G502 X / PRO X 60 / RawInput)"
+        - "Physics & Telemetry (C++20 / Lua / Python / Shared Memory IPC)"
+        - "Shell & Git Governance (PowerShell / MSYS2 UCRT64)"
     validations:
       required: true
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Incident Description & Symptoms
+      label: Incident Summary & Symptoms
     validations:
       required: true
   - type: textarea
-    id: reproduction
+    id: baseline
     attributes:
-      label: Steps to Reproduce
-    validations:
-      required: true
-  - type: textarea
-    id: hardware_baseline
-    attributes:
-      label: Verified Workstation Baseline (FN-WORKSTATION)
+      label: Hardware Baseline
       value: |
         - Hostname: FN-WORKSTATION
-        - OS: Microsoft Windows 11 Pro (25H2, Build 26200, 64-bit)
-        - CPU: 12th Gen Intel Core i5-12400F (6C / 12T)
-        - GPU: NVIDIA GeForce GTX 1660 Ti (240Hz Output)
-        - RAM: 32 GB Physical DDR4
-        - Motherboard / BIOS: ASUS SM-H610 (UEFI BIOS 4003)
-        - Peripherals: Logitech G502 X + Logitech PRO X 60
+        - OS: Microsoft Windows 11 Pro (25H2, Build 26200)
+        - CPU: Intel Core i5-12400F | GPU: NVIDIA GTX 1660 Ti | RAM: 32 GB
+        - Motherboard: ASUS SM-H610 (BIOS 4003)
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: Terminal Output / Logs
+      label: Terminal Output / Logs (Redact Serials)
       render: powershell

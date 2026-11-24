@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: WikiLife Core Architecture (wiki-live-core)
+  - name: WikiLife Core Repository (wiki-live-core)
     url: https://github.com/userfn-git/wiki-live-core/issues
-    about: For tree-structured knowledge system, GCP adapters, or CI/CD pipeline issues.
+    about: Issues related to WikiLife Core paths, branches, or CI/CD workflows.
