@@ -1,13 +1,24 @@
-name: "Engineering Task & Tuning"
-description: "Track a script, hardware tuning, or documentation update."
+name: "Engineering Task & Multi-Node Tuning"
+description: "Official task template for FN-WORKSTATION (PC) and HONOR X6c (Mobile) engineering."
 title: "[TASK]: "
 labels: ["enhancement"]
 assignees:
   - userfn-git
 body:
+  - type: dropdown
+    id: target_node
+    attributes:
+      label: Target Device Node
+      options:
+        - "Node A: FN-WORKSTATION (PC - Windows 11 Pro 25H2)"
+        - "Node B: HONOR X6c (NIC-LX2 - Android 15 / MagicOS 9.0)"
+        - "Both Nodes (Unified Ecosystem)"
+      default: 0
+    validations:
+      required: true
   - type: textarea
     id: objective
     attributes:
-      label: Objective & Acceptance Criteria
+      label: Technical Objective, Target Path & Verification Criteria
     validations:
       required: true

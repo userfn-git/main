@@ -1,17 +1,23 @@
-name: "System & Hardware Bug Report"
-description: "Report an OS, driver, input pipeline, or repository issue on FN-WORKSTATION or Mobile."
-title: "[BUG]: "
+name: "Unified Device & System Incident Report (PC & Mobile)"
+description: "Official structured bug/incident template strictly bound to FN-WORKSTATION (PC) and HONOR X6c (Mobile)."
+title: "[INCIDENT]: "
 labels: ["bug"]
 assignees:
   - userfn-git
 body:
-  - type: dropdown
-    id: device_node
+  - type: markdown
     attributes:
-      label: Target Device / Node
+      value: |
+        ### Official Hardware-Bound Incident Report (`userfn-git`)
+        Isolated to verified personal nodes only to prevent environment cross-contamination.
+  - type: dropdown
+    id: target_node
+    attributes:
+      label: Verified Hardware Node
       options:
-        - "FN-WORKSTATION (PC - Windows 11 Pro 25H2)"
-        - "Mobile Device (Secondary Node)"
+        - "Node A: FN-WORKSTATION (PC - Windows 11 Pro 25H2 Build 26200)"
+        - "Node B: HONOR X6c (Model NIC-LX2 / TAC 86567207 - Android 15 / MagicOS 9.0)"
+        - "Cross-Node Sync (PC <-> Mobile / GitHub / Cloud)"
       default: 0
     validations:
       required: true
@@ -20,32 +26,48 @@ body:
     attributes:
       label: Affected Subsystem
       options:
-        - "OS & Windows Internals (Build 26200 / HVCI)"
-        - "Hardware & Firmware (ASUS SM-H610 / BIOS 4003 / GTX 1660 Ti)"
-        - "Peripherals & Input (Logitech G502 X / PRO X 60 / RawInput)"
-        - "Physics & Telemetry (C++20 / Lua / Python / Shared Memory IPC)"
-        - "Shell & Git Governance (PowerShell / MSYS2 UCRT64)"
+        - "[PC] OS & Windows Internals (Build 26200 / HVCI)"
+        - "[PC] Hardware & Firmware (ASUS SM-H610 / BIOS 4003 / i5-12400F / GTX 1660 Ti)"
+        - "[PC] Peripherals & Input (Logitech G502 X / PRO X 60 / RawInput)"
+        - "[PC] Physics & Telemetry (C++20 / Lua 5.5 / Python / Local\FN_PHYSICS_SHM)"
+        - "[PC] Shell & Git Governance (PowerShell / MSYS2 UCRT64)"
+        - "[Mobile] Android 15 / MagicOS 9.0 (HONOR X6c NIC-LX2 / Helio G81 Ultra)"
+        - "[Mobile] Network / Sync / GitHub Client (Wi-Fi 5 / NFC / USB-C)"
     validations:
       required: true
   - type: textarea
-    id: description
+    id: symptoms
     attributes:
-      label: Incident Summary & Symptoms
+      label: Incident Description & Exact Symptoms
     validations:
       required: true
   - type: textarea
-    id: baseline
+    id: steps
     attributes:
-      label: Hardware Baseline
+      label: Reproduction Steps
+    validations:
+      required: true
+  - type: textarea
+    id: unified_baseline
+    attributes:
+      label: Locked Multi-Device Baseline (Do Not Alter Node Specs)
       value: |
+        ### Node A: Primary Workstation (PC)
         - Hostname: FN-WORKSTATION
-        - OS: Microsoft Windows 11 Pro (25H2, Build 26200)
-        - CPU: Intel Core i5-12400F | GPU: NVIDIA GTX 1660 Ti | RAM: 32 GB
-        - Motherboard: ASUS SM-H610 (BIOS 4003)
+        - OS: Microsoft Windows 11 Pro (Version 25H2, Build 26200, 64-bit)
+        - CPU: 12th Gen Intel Core i5-12400F | GPU: NVIDIA GeForce GTX 1660 Ti (240Hz)
+        - RAM: 32 GB DDR4 | Motherboard: ASUS SM-H610 (UEFI BIOS 4003)
+        - Peripherals: Logitech G502 X + Logitech PRO X 60
+
+        ### Node B: Mobile Client (Android)
+        - Device: HONOR X6c (Model: NIC-LX2 | TAC: 86567207 | IMEI1: Verified/Redacted)
+        - OS: Android 15 (MagicOS 9.0)
+        - SoC: MediaTek Helio G81 Ultra (Octa-Core) | GPU: ARM Mali-G52 MC2
+        - Display: 6.61" TFT LCD 120Hz (1604x720) | Battery: 5300 mAh (35W)
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: Terminal Output / Logs (Redact Serials)
+      label: Diagnostic Logs / Terminal Output (Strip Serials & Full IMEI)
       render: powershell
