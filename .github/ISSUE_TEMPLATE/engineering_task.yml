@@ -1,0 +1,24 @@
+name: "Engineering Task & Hardware Tuning"
+description: "Track a script, BIOS/driver tuning, input curve adjustment, or automation task."
+title: "[TASK]: "
+labels: ["enhancement", "engineering"]
+assignees:
+  - userfn-git
+body:
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Engineering Domain
+      options:
+        - "Workstation & BIOS / Driver Tuning"
+        - "PowerShell / Bash Automation & Profiles"
+        - "Input Curves & Physics Engine (C++ / Lua / Python)"
+        - "Repository Governance & Documentation"
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Technical Objective & Acceptance Criteria
+    validations:
+      required: true
